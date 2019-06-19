@@ -1,49 +1,57 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-// import { listRepos } from './reducer';
+import styles from './styles';
+import Button from '../button';
+import data from '../../constant/index';
 
 class Card extends Component {
   componentDidMount() {
-    // this.props.listRepos('relferreira');
+    console.log(data)
   }
   renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <Text>{item.name}</Text>
+    <View style={styles.card}>
+        <Image
+          style={styles.image}
+          source={{ uri: item.ImageUrl }}
+        />
+        <View style={styles.content}>
+         <Button />
+        <View style={styles.body}>
+          <Text style={styles.itemName}>{item.Name}</Text>
+          <Text style={styles.price}>price</Text>
+          <View style={{alignSelf: 'flex-end', flexDirection: 'row'}}>
+          <TouchableOpacity>
+            <Text style={styles.icon}> - </Text>
+          </TouchableOpacity>
+          <Text style={styles.itemName}>count</Text>
+          <TouchableOpacity>
+            <Text style={styles.icon}> + </Text>
+          </TouchableOpacity>
+          </View>
+        </View>
+       </View>
     </View>
   );
   render() {
     return (
       <FlatList
         styles={styles.container}
-        data={[1,2,3,4,5,6,6,7,88,9]}
+        data={data.FoodList[0].fnblist}
         renderItem={this.renderItem}
       />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
-  }
-});
 
 const mapStateToProps = state => {
-  // let storedRepositories = state.repos.map(repo => ({ key: repo.id, ...repo }));
-  // return {
-  //   repos: storedRepositories
-  // };
+
 };
 
 const mapDispatchToProps = {
-  // listRepos
+
 };
 
 export default Card;
