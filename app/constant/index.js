@@ -1,4 +1,4 @@
-{
+export default {
 "status": {
 "Id": "1",
 "Description": "OK"
