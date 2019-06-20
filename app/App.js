@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import Card from './components/cards';
 import Slider from './components/slider'
 import data from './constant/index';
-import { getData } from './actions';
 
 const { width, height } = Dimensions.get("window");
 
@@ -17,10 +16,6 @@ class App extends Component {
     this.state = {
       tabOnView: data.FoodList[0].TabName,
     }
-  }
-
-  componentWillMount() {
-    this.props.getData(data);
   }
 
   tabOnChange(tabName) {
@@ -47,23 +42,23 @@ class App extends Component {
             <TouchableOpacity style={styles.tabStyle} onPress={() => this.tabOnChange(data.FoodList[1].TabName)}><Text style={{fontSize: 20, color: this.state.tabOnView === data.FoodList[1].TabName ? '#FFF' : '#B8BABB', fontWeight: this.state.tabOnView === data.FoodList[1].TabName ? 'bold' : null}}>{data.FoodList[1].TabName}</Text></TouchableOpacity>
           </View>
           <ScrollView>
-           {this.props.foodList.length > 0 &&
-             <Card cardItems={this.props.foodList.filter((item) => item.TabName === this.state.tabOnView)}/>
+           {data &&
+             <Card cardItems={data.FoodList.filter((item) => item.TabName === this.state.tabOnView)}/>
            }
           </ScrollView>
-          <Slider />
+          <Slider cost={this.props.totalCost}/>
       </View>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  foodList: state.foodList
+  totalCost: state.totalCost
 });
 
-const mapDispatchToProps = {
-  getData
-};
+function bindAction(dispatch) {
+  return {
+ }}
 
 
 const styles = StyleSheet.create({
@@ -81,4 +76,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, bindAction)(App);
