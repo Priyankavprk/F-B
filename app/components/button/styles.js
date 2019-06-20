@@ -11,6 +11,6 @@ module.exports = StyleSheet.flatten({
     width: 80,
     borderWidth: 1,
     borderColor: '#FFF',
-    margin: 20
+    margin: 10
   }
 });

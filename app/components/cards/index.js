@@ -7,9 +7,32 @@ import Button from '../button';
 import data from '../../constant/index';
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    }
+  }
+
   componentDidMount() {
     console.log(data)
   }
+
+  minusValue(item) {
+    console.log(';;;;;',item)
+    this.setState({
+      count: this.state.count - 1
+    })
+  }
+
+  plusValue(item) {
+    console.log('......',item)
+    this.setState({
+      count: this.state.count + 1
+    })
+    console.log('....ddd..',item,this.state.count)
+  }
+
   renderItem = ({ item }) => (
     <View style={styles.card}>
         <Image
@@ -25,11 +48,11 @@ class Card extends Component {
           <Text style={styles.itemName}>{item.Name}</Text>
           <Text style={styles.price}>price</Text>
           <View style={{alignSelf: 'flex-end', flexDirection: 'row'}}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {this.minusValue(item)}}>
             <Text style={styles.icon}> - </Text>
           </TouchableOpacity>
-          <Text style={styles.itemName}>count</Text>
-          <TouchableOpacity>
+          <Text style={styles.itemName}>{this.state.count}</Text>
+          <TouchableOpacity onPress={() => {this.plusValue(item)}}>
             <Text style={styles.icon}> + </Text>
           </TouchableOpacity>
           </View>
@@ -39,6 +62,7 @@ class Card extends Component {
   render() {
     return (
       <FlatList
+        keyExtractor={(item, index) => 'key'+index}
         styles={styles.container}
         data={this.props.cardItems[0].fnblist}
         renderItem={this.renderItem}

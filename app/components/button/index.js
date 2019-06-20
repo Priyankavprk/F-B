@@ -6,10 +6,8 @@ import styles from './styles'
 
 
 class Button extends Component {
-  renderItem = ({ item }) => (
-    <TouchableOpacity
-     style={styles.button}
-    >
+  renderItem = ({ item}) => (
+    <TouchableOpacity style={styles.button}>
       <Text style={{color: '#FFF', textAlign: 'center'}}>{item.Name}</Text>
     </TouchableOpacity>
   );
@@ -17,8 +15,8 @@ class Button extends Component {
     return (
       <FlatList
         scrollEnabled={false}
+        keyExtractor={(item, index) => 'key'+index}
         horizontal={true}
-        styles={styles.container}
         data={this.props.subItems}
         renderItem={this.renderItem}
       />

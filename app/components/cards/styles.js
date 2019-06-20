@@ -15,7 +15,7 @@ module.exports = StyleSheet.flatten({
   },
   card: {
     width: width - 60,
-    height: 450,
+    flexWrap: 'wrap',
     flexDirection: 'column',
     margin: 24,
     borderWidth: 1,
@@ -39,7 +39,9 @@ module.exports = StyleSheet.flatten({
   },
   content: {
     flexDirection: 'column',
-
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: '#000',
     marginTop: 20,
   },
