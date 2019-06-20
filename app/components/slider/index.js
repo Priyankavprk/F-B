@@ -17,18 +17,11 @@ class Slider extends Component {
   render() {
     return (
       <View style={styles.container}>
-       <Text>newM</Text>
+       <Text style={{ margin: 20, fontSize: 20}}>AED  {this.props.cost} ^</Text>
+       <Text style={{ margin: 20, fontSize: 25, fontWeight: 'bold'}}>PAY > </Text>
       </View>
     );
   }
 }
-
-const mapStateToProps = state => {
-
-};
-
-const mapDispatchToProps = {
-
-};
 
 export default Slider;

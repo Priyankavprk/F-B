@@ -6,6 +6,8 @@ const { width, height } = Dimensions.get("window");
 
 module.exports = StyleSheet.flatten({
   container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: '#FFDB01',
     width: width,
     height: height / 9
