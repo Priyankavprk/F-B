@@ -1,18 +1,26 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+
 
 import Card from './components/cards';
+import Slider from './components/slider'
 import data from './constant/index';
+import { getData } from './actions';
 
 const { width, height } = Dimensions.get("window");
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tabOnView: data.FoodList[0].TabName,
     }
+  }
+
+  componentWillMount() {
+    this.props.getData(data);
   }
 
   tabOnChange(tabName) {
@@ -21,15 +29,14 @@ export default class App extends Component {
     })
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.tabOnView !== nextState.tabOnView) {
-      return true
-    }
-    return false
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.tabOnView !== nextState.tabOnView) {
+  //     return true
+  //   }
+  //   return false
+  // }
 
   render() {
-    console.log(';;;;;;',this.state.tabOnView)
     return (
       <View style={styles.container}>
         <Text style={{fontSize: 30, color: '#FFF', fontWeight: 'bold', margin: 20}}> F & B </Text>
@@ -40,12 +47,24 @@ export default class App extends Component {
             <TouchableOpacity style={styles.tabStyle} onPress={() => this.tabOnChange(data.FoodList[1].TabName)}><Text style={{fontSize: 20, color: this.state.tabOnView === data.FoodList[1].TabName ? '#FFF' : '#B8BABB', fontWeight: this.state.tabOnView === data.FoodList[1].TabName ? 'bold' : null}}>{data.FoodList[1].TabName}</Text></TouchableOpacity>
           </View>
           <ScrollView>
-            <Card cardItems={data.FoodList.filter((item) => item.TabName === this.state.tabOnView)}/>
+           {this.props.foodList.length > 0 &&
+             <Card cardItems={this.props.foodList.filter((item) => item.TabName === this.state.tabOnView)}/>
+           }
           </ScrollView>
+          <Slider />
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  foodList: state.foodList
+});
+
+const mapDispatchToProps = {
+  getData
+};
+
 
 const styles = StyleSheet.create({
   container: {
@@ -61,3 +80,5 @@ const styles = StyleSheet.create({
     margin: 20
   }
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
