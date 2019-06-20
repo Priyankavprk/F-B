@@ -1,29 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 import Card from './components/cards';
+import data from './constant/index';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const { width, height } = Dimensions.get("window");
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabOnView: data.FoodList[0].TabName,
+    }
+  }
+
+  tabOnChange(tabName) {
+    this.setState({
+      tabOnView: tabName
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Card />
+        <Text style={{fontSize: 30, color: '#FFF', fontWeight: 'bold', margin: 20}}> F & B </Text>
+        <View  style={{borderColor: '#C7CACB', width: width - 20, borderWidth: 1}}/>
+          <View style={styles.tab}>
+            <TouchableOpacity style={styles.tabStyle} onPress={() => this.tabOnChange(data.FoodList[0].TabName)}><Text style={{fontSize: 20, color: '#FFF'}}>{data.FoodList[0].TabName}</Text></TouchableOpacity>
+            <View style={{borderLeftWidth: 1, borderLeftColor: 'white'}}/>
+            <TouchableOpacity style={styles.tabStyle} onPress={() => this.tabOnChange(data.FoodList[1].TabName)}><Text style={{fontSize: 20, color: '#FFF'}}>{data.FoodList[1].TabName}</Text></TouchableOpacity>
+          </View>
+          <ScrollView>
+
+            <Card cardItems={data.FoodList.filter((item) => item.TabName === this.state.tabOnView)}/>
+
+          </ScrollView>
       </View>
     );
   }
@@ -32,18 +44,14 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  tab: {
+    flexDirection: 'row',
+    padding: 20
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  tabStyle: {
+    margin: 20
+  }
 });
