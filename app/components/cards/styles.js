@@ -19,11 +19,15 @@ module.exports = StyleSheet.flatten({
     flexDirection: 'column',
     margin: 24,
     borderWidth: 1,
-    borderColor: '#FFF'
+    borderColor: '#C7CACB',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
   image: {
     height: 250,
     width: width - 65,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
   subtitle: {
     width: width - 50,
@@ -35,8 +39,9 @@ module.exports = StyleSheet.flatten({
   },
   content: {
     flexDirection: 'column',
-    height: 150,
+
     backgroundColor: '#000',
+    marginTop: 20,
   },
   button: {
     padding: 5,
@@ -47,12 +52,11 @@ module.exports = StyleSheet.flatten({
   },
   body: {
     flexDirection: 'column',
-    padding: 20,
-    marginTop: 20
+    margin: 10,
   },
   itemName: {
     color: '#C7CACB',
-    fontSize: 30
+    fontSize: 20,
   },
   price: {
     color: '#C7CACB'

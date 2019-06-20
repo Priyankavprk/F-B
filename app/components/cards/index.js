@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from './styles';
@@ -17,7 +17,10 @@ class Card extends Component {
           source={{ uri: item.ImageUrl }}
         />
         <View style={styles.content}>
-         <Button />
+        {item.subitems.length > 0 &&
+          <Button subItems={item.subitems}/>
+        }
+        </View>
         <View style={styles.body}>
           <Text style={styles.itemName}>{item.Name}</Text>
           <Text style={styles.price}>price</Text>
@@ -30,7 +33,6 @@ class Card extends Component {
             <Text style={styles.icon}> + </Text>
           </TouchableOpacity>
           </View>
-        </View>
        </View>
     </View>
   );
@@ -38,7 +40,7 @@ class Card extends Component {
     return (
       <FlatList
         styles={styles.container}
-        data={data.FoodList[0].fnblist}
+        data={this.props.cardItems[0].fnblist}
         renderItem={this.renderItem}
       />
     );
