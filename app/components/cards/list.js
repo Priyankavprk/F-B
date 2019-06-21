@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from './styles';
 import Button from '../button';
-import data from '../../constant/index';
 import { addToCart, subFromCart } from '../../actions';
 
 class ListComponent extends Component {
@@ -21,16 +20,14 @@ class ListComponent extends Component {
     if (this.state.count !== 0) {
       this.setState({
         count: this.state.count - 1,
-      })
-      this.props.subFromCart(this.state.itemSelected ? parseInt(this.state.itemSelected.SubitemPrice) : parseInt(this.props.item.item.ItemPrice))
+      }, () => this.props.subFromCart(this.state.itemSelected ? parseInt(this.state.itemSelected.SubitemPrice) : parseInt(this.props.item.item.ItemPrice), item.Name, this.state.count))
     }
   }
 
   plusValue(item) {
     this.setState({
       count: this.state.count + 1,
-    })
-    this.props.addToCart(this.state.itemSelected ? parseInt(this.state.itemSelected.SubitemPrice) : parseInt(this.props.item.item.ItemPrice))
+    },() => this.props.addToCart(this.state.itemSelected ? parseInt(this.state.itemSelected.SubitemPrice) : parseInt(this.props.item.item.ItemPrice), item.Name, this.state.count))
   }
 
   changeSubItem(item) {
@@ -76,8 +73,8 @@ const mapStateToProps = state => ({
 
 function bindAction(dispatch) {
   return {
-   addToCart: price => dispatch(addToCart(price)),
-   subFromCart: price => dispatch(subFromCart(price))
+   addToCart: (price, name, count) => dispatch(addToCart(price, name, count)),
+   subFromCart: (price, name, count) => dispatch(subFromCart(price, name, count))
  }}
 
 

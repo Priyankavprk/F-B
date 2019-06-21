@@ -6,18 +6,19 @@ const { width, height } = Dimensions.get("window");
 
 module.exports = StyleSheet.flatten({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: '#FFDB01',
     width: width,
-    // height: height / 9
   },
-  box: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#FFDB01',
-    width: width,
-    height: height / 2
-  },
-
+  list: {
+   flexDirection: 'row',
+   justifyContent: 'space-between',
+   margin: 10
+ },
+ listItem: {
+   color: '#000',
+   fontSize: 20,
+   fontWeight: '700'
+ }
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import styles from './styles'
 
 
@@ -45,13 +45,10 @@ class Button extends Component {
   }
 }
 
-
-const mapStateToProps = state => {
-
-};
-
-const mapDispatchToProps = {
-
-};
+Button.propTypes = {
+  subItems: PropTypes.array,
+  onSubItemChange: PropTypes.func,
+  itemSelected: PropTypes.object
+}
 
 export default Button;

@@ -24,13 +24,6 @@ class App extends Component {
     })
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.tabOnView !== nextState.tabOnView) {
-  //     return true
-  //   }
-  //   return false
-  // }
-
   render() {
     return (
       <View style={styles.container}>
