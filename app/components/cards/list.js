@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import styles from './styles';
 import Button from '../button';
@@ -44,7 +45,8 @@ class ListComponent extends Component {
             source={{ uri: this.props.item.item.ImageUrl }}
           />
           <View style={styles.content}>
-          {this.props.item.item.subitems.length > 0 &&
+          {
+            this.props.item.item.subitems.length > 0 &&
             <Button subItems={this.props.item.item.subitems} onSubItemChange={this.changeSubItem} selectedItem={this.state.itemSelected}/>
           }
           </View>
@@ -76,6 +78,12 @@ function bindAction(dispatch) {
    addToCart: (price, name, count) => dispatch(addToCart(price, name, count)),
    subFromCart: (price, name, count) => dispatch(subFromCart(price, name, count))
  }}
+
+ListComponent.propTypes = {
+   addToCart: PropTypes.func,
+   subFromCart: PropTypes.func,
+   item: PropTypes.object,
+ }
 
 
 export default connect(mapStateToProps, bindAction)(ListComponent);

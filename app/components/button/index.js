@@ -26,11 +26,13 @@ class Button extends Component {
     }
     return false
   }
+
   renderItem = ({ item }) => (
     <TouchableOpacity style={[styles.button, {backgroundColor: this.props.selectedItem.Name === item.Name ? '#FFDB01' : '#000'} ]} onPress={() => this.tabOnClick(item)}>
       <Text style={{color: '#FFF', textAlign: 'center'}}>{item.Name}</Text>
     </TouchableOpacity>
   );
+
   render() {
     return (
       <FlatList
@@ -48,7 +50,7 @@ class Button extends Component {
 Button.propTypes = {
   subItems: PropTypes.array,
   onSubItemChange: PropTypes.func,
-  itemSelected: PropTypes.object
+  selectedItem: PropTypes.object
 }
 
 export default Button;

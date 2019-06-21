@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import styles from './styles';
-import Button from '../button';
-import data from '../../constant/index';
 import ListComponent from './list';
 
 class Card extends Component {
@@ -14,18 +13,14 @@ class Card extends Component {
         keyExtractor={(item, index) => 'key'+item.TabName+index}
         styles={styles.container}
         data={this.props.cardItems[0].fnblist}
-        renderItem={(item, index) => <ListComponent item={item} index={index}/>}
+        renderItem={(item) => <ListComponent item={item}/>}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  foodList: state.foodList
-});
+Card.propTypes = {
+  cardItems: PropTypes.array
+}
 
-const mapDispatchToProps = {
-
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default Card;

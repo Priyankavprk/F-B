@@ -69,4 +69,8 @@ const styles = StyleSheet.create({
   }
 });
 
+App.propTypes = {
+  totalCost: PropTypes.number
+}
+
 export default connect(mapStateToProps, bindAction)(App);
