@@ -10,7 +10,14 @@ module.exports = StyleSheet.flatten({
     justifyContent: 'space-between',
     backgroundColor: '#FFDB01',
     width: width,
-    height: height / 9
+    // height: height / 9
+  },
+  box: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFDB01',
+    width: width,
+    height: height / 2
   },
 
 });
