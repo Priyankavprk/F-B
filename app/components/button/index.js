@@ -29,7 +29,7 @@ class Button extends Component {
 
   renderItem = ({ item }) => (
     <TouchableOpacity style={[styles.button, {backgroundColor: this.props.selectedItem.Name === item.Name ? '#FFDB01' : '#000'} ]} onPress={() => this.tabOnClick(item)}>
-      <Text style={{color: '#FFF', textAlign: 'center'}}>{item.Name}</Text>
+      <Text style={{color: '#FFF', textAlign: 'center', fontSize: 12}}>{item.Name}</Text>
     </TouchableOpacity>
   );
 

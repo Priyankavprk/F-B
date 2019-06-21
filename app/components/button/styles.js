@@ -8,7 +8,7 @@ module.exports = StyleSheet.flatten({
   button: {
     padding: 10,
     height: 40,
-    width: 80,
+    width: 75,
     borderWidth: 1,
     borderColor: '#FFF',
     margin: 10
