@@ -25,7 +25,7 @@ module.exports = StyleSheet.flatten({
   },
   image: {
     height: 250,
-    width: width - 65,
+    width: 'auto',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20
   },

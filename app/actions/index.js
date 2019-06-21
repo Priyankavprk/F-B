@@ -18,7 +18,7 @@ export function subFromCart(price, name, num) {
         newItem = Object.assign({}, getState().cartItems, {[name]:[num, price]})
       } else {
         delete getState().cartItems[name]
-        newItem = getState().cartItems[name]
+        newItem = getState().cartItems
       }
     }
     dispatch({

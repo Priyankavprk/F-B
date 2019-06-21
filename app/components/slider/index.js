@@ -47,7 +47,7 @@ class Slider extends Component {
   render() {
       return (
           <View style={[styles.container, {height: this.state.summaryView ? height / 2 : height / 9}]}>
-           {this.state.summaryView &&
+           {this.state.summaryView && Object.keys(this.props.cartItems).length > 0 &&
              <View style={{flexDirection: 'column'}}>
               <Text style={{fontSize: 25, fontWeight: 'bold', margin: 5}}>F & B Summary</Text>
               <FlatList
