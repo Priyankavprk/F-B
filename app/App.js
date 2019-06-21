@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 
 import Card from './components/cards';
 import Slider from './components/slider'

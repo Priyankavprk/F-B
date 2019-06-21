@@ -44,6 +44,7 @@ module.exports = StyleSheet.flatten({
     alignItems: 'center',
     backgroundColor: '#000',
     marginTop: 20,
+    width: width - 90
   },
   button: {
     padding: 5,
